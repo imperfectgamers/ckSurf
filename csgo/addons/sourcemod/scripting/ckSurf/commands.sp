@@ -523,7 +523,7 @@ public Action Command_Teleport(int client, int args)
 
 public Action Command_HowTo(int client, int args)
 {
-	ShowMOTDPanel(client, "ckSurf - How To Surf", "http://koti.kapsi.fi/~mukavajoni/how", MOTDPANEL_TYPE_URL);
+	ShowMOTDPanel(client, "Imperfect Gamers - How To Surf", "http://imperfectgamers.org/tutorial", MOTDPANEL_TYPE_URL);
 	return Plugin_Handled;
 }
 
@@ -1966,7 +1966,7 @@ public Action Client_Ranks(int client, int args)
 			}
 			Format(ChatLine, 512, "%s%s%c (%ip)   ", ChatLine, RankValue[RankNameColored], WHITE, RankValue[PointReq]);
 		}
-		PrintToChat(client, ChatLine);
+		CPrintToChat(client, ChatLine);
 	}
 	return Plugin_Handled;
 }
@@ -1986,7 +1986,7 @@ public Action Client_Compare(int client, int args)
 public Action Client_RankingSystem(int client, int args)
 {
 	PrintToChat(client, "[%c%s%c]%c Loading html page.. (requires cl_disablehtmlmotd 0)", MOSSGREEN, g_szChatPrefix, WHITE, LIMEGREEN);
-	ShowMOTDPanel(client, "ckSurf - Ranking System", "http://koti.kapsi.fi/~mukavajoni/ranking/index.html", MOTDPANEL_TYPE_URL);
+	ShowMOTDPanel(client, "IG - Ranking System", "http://imperfectgamers.org/ranking", MOTDPANEL_TYPE_URL);
 	return Plugin_Handled;
 }
 
@@ -2192,7 +2192,7 @@ public Action Client_GoTo(int client, int args)
 				if (args == 0)
 				{
 					Menu menu = new Menu(GoToMenuHandler);
-					menu.SetTitle("ckSurf - Goto menu");
+					menu.SetTitle("Surf - Goto menu");
 					int playerCount = 0;
 					for (int i = 1; i <= MaxClients; i++)
 					{
@@ -2339,7 +2339,7 @@ public void ckTopMenu(int client)
 {
 	g_MenuLevel[client] = -1;
 	Menu menu = new Menu(TopMenuHandler);
-	menu.SetTitle("ckSurf - Top Menu");
+	menu.SetTitle("Surf - Top Menu");
 	if (g_hPointSystem.BoolValue)
 		menu.AddItem("Top 100 Players", "Top 100 Players");
 	menu.AddItem("Top 5 Challengers", "Top 5 Challengers");
@@ -2423,7 +2423,7 @@ public void HelpPanel(int client)
 {
 	PrintConsoleInfo(client);
 	Panel panel = new Panel();
-	panel.SetTitle("ckSurf Help (1/4)");
+	panel.SetTitle("Surf Help (1/4)");
 	panel.DrawText(" ");
 	panel.DrawText("!help - opens this menu");
 	panel.DrawText("!help2 - explanation of the ranking system");
@@ -2451,7 +2451,7 @@ public int HelpPanelHandler(Menu menu, MenuAction action, int param1, int param2
 public int HelpPanel2(int client)
 {
 	Panel panel = new Panel();
-	panel.SetTitle("ckSurf Help (2/4)");
+	panel.SetTitle("Surf Help (2/4)");
 	panel.DrawText(" ");
 	panel.DrawText("!start/!r - go back to start");
 	panel.DrawText("!stop - stops the timer");
@@ -2485,7 +2485,7 @@ public int HelpPanel2Handler(Menu menu, MenuAction action, int param1, int param
 public void HelpPanel3(int client)
 {
 	Panel panel = new Panel();
-	panel.SetTitle("ckSurf Help (3/4)");
+	panel.SetTitle("Surf Help (3/4)");
 	panel.DrawText(" ");
 	panel.DrawText("!maptop <mapname> - displays map top for a given map");
 	panel.DrawText("!flashlight - on/off flashlight");
@@ -2517,7 +2517,7 @@ public int HelpPanel3Handler(Menu menu, MenuAction action, int param1, int param
 public void HelpPanel4(int client)
 {
 	Panel panel = new Panel();
-	panel.SetTitle("ckSurf Help (4/4)");
+	panel.SetTitle("Surf Help (4/4)");
 	panel.DrawText(" ");
 	panel.DrawText("!cp - Creates a checkpoint to use in practice mode.");
 	panel.DrawText("!tele / !teleport / !practice / !prac - Starts practice mode");
@@ -2542,7 +2542,7 @@ public void ShowSrvSettings(int client)
 {
 	PrintToConsole(client, " ");
 	PrintToConsole(client, "-----------------");
-	PrintToConsole(client, "ckSurf settings");
+	PrintToConsole(client, "Surf settings");
 	PrintToConsole(client, "-----------------");
 	PrintToConsole(client, "ck_admin_clantag %b", g_hAdminClantag.BoolValue);
 	PrintToConsole(client, "ck_attack_spam_protection %b", g_hAttackSpamProtection.BoolValue);
@@ -2612,7 +2612,7 @@ public void ShowSrvSettings(int client)
 public void OptionMenu(int client)
 {
 	Menu menu = new Menu(OptionMenuHandler);
-	menu.SetTitle("ckSurf - Options Menu");
+	menu.SetTitle("Surf - Options Menu");
 	// #0
 	if (g_bHide[client])
 		menu.AddItem("Hide Players  -  Enabled", "Hide other players  -  Enabled");
