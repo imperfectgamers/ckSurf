@@ -155,7 +155,7 @@ public int h_MutePlayers(Menu tMenu, MenuAction action, int client, int item)
 		{
 			char aID[8];
 			GetMenuItem(tMenu, item, aID, sizeof(aID));
-			int clientID = StringToInt(aID);			
+			int clientID = StringToInt(aID);
 			if (IsValidClient(clientID))
 			{
 				char szName[MAX_NAME_LENGTH];
@@ -249,9 +249,9 @@ public Action Command_extend(int client, int args)
 	if (args < 1)
 	{
 		ReplyToCommand(client, "[SM] Usage: sm_extend <message>");
-		return Plugin_Handled;	
+		return Plugin_Handled;
 	}
-	
+
 	char arg1[3];
 	GetCmdArg(1, arg1, sizeof(arg1));
 	int ExtendAmount = StringToInt(arg1);
@@ -301,7 +301,7 @@ public Action Command_VoteExtend(int client, int args)
 	if (timeleft < 0)
 	{
 		PrintToChat(client, "[%c%s%c] Vote Extend can not be used during this time.", MOSSGREEN, g_szChatPrefix, WHITE);
-		return Plugin_Handled;					
+		return Plugin_Handled;
 	}
 
 	if (g_VoteExtends >= g_hMaxVoteExtends.IntValue)
@@ -516,14 +516,14 @@ public Action Command_Teleport(int client, int args)
 		teleportClient(client, g_iClientInZone[client][2], 1, false);
 		return Plugin_Handled;
 	}
-	
+
 	teleportClient(client, g_iClientInZone[client][2], g_Stage[g_iClientInZone[client][2]][client], false);
 	return Plugin_Handled;
 }
 
 public Action Command_HowTo(int client, int args)
 {
-	ShowMOTDPanel(client, "ckSurf - How To Surf", "http://koti.kapsi.fi/~mukavajoni/how", MOTDPANEL_TYPE_URL);
+	ShowMOTDPanel(client, "Imperfect Gamers - How To Surf", "http://www.imperfectgamers.org/tutorial", MOTDPANEL_TYPE_URL);
 	return Plugin_Handled;
 }
 
@@ -785,7 +785,7 @@ public Action Command_Restart(int client, int args)
 	}
 	if (g_bNoClip[client])
 		{
-			PrintToChat(client, "[%c%s%c] You are still noclipping. To start your run type !ncr", MOSSGREEN, g_szChatPrefix, WHITE);	
+			PrintToChat(client, "[%c%s%c] You are still noclipping. To start your run type !ncr", MOSSGREEN, g_szChatPrefix, WHITE);
 		} else
 		{
 		ClientCommand(client, "play ambient/misc/clank4");
@@ -802,7 +802,7 @@ public Action Command_RestartNC(int client, int args)
 	{
 		if (GetGameTime() - g_fClientRestarting[client] > 5.0)
 			g_bClientRestarting[client] = false;
-		
+
 		// Check that the client has a timer running, the zonegroup he is in has stages and that this is the first click
 		if (IsValidClient(client) && g_bTimeractivated[client] && g_mapZonesTypeCount[g_iClientInZone[client][2]][3] > 0 && !g_bClientRestarting[client] && g_Stage[g_iClientInZone[client][2]][client] > 1)
 		{
@@ -817,7 +817,7 @@ public Action Command_RestartNC(int client, int args)
 					Action_UnNoClip(client);
 					PrintToChat(client, "[%c%s%c] You may now begin your run.", MOSSGREEN, g_szChatPrefix, WHITE);
 					ClientCommand(client, "play ambient/misc/clank3");
-					} else 
+					} else
 					{
 					PrintToChat(client, "[%c%s%c] You may now begin your run.", MOSSGREEN, g_szChatPrefix, WHITE);
 					ClientCommand(client, "play ambient/misc/clank3");
@@ -1012,9 +1012,9 @@ public Action Client_Challenge(int client, int args)
 				Menu menu = new Menu(ChallengeMenuHandler2);
 				char tmp[64];
 				if (g_hPointSystem.BoolValue && g_hChallengePoints.BoolValue)
-					Format(tmp, 64, "ckSurf - Challenge: Player Bet?\nYour Points: %i", g_pr_points[client]);
+					Format(tmp, 64, "Surf - Challenge: Player Bet?\nYour Points: %i", g_pr_points[client]);
 				else
-					Format(tmp, 64, "ckSurf - Challenge: Player Bet?\nPlayer point system disabled", g_pr_points[client]);
+					Format(tmp, 64, "Surf - Challenge: Player Bet?\nPlayer point system disabled", g_pr_points[client]);
 				menu.SetTitle(tmp);
 				menu.AddItem("0", "No bet");
 				if (g_hPointSystem.BoolValue && g_hChallengePoints.BoolValue)
@@ -1072,7 +1072,7 @@ public int ChallengeMenuHandler2(Menu menu, MenuAction action, int param1, int p
 						g_Challenge_Bet[param1] = 0;
 		char szPlayerName[MAX_NAME_LENGTH];
 		Menu menu2 = new Menu(ChallengeMenuHandler3);
-		menu2.SetTitle("ckSurf - Challenge: Select your Opponent");
+		menu2.SetTitle("Surf - Challenge: Select your Opponent");
 		int playerCount = 0;
 		for (int i = 1; i <= MaxClients; i++)
 		{
@@ -1253,7 +1253,7 @@ public Action Client_Usp(int client, int args)
 		{
 			int offset = GetEntProp(weapon, Prop_Send, "m_iPrimaryAmmoType", 1)*4;
 	  		int iAmmoTable = FindSendPropInfo("CTFPlayer", "m_iAmmo");
-	  		SetEntData(client, iAmmoTable+offset, 0, 4, true);  
+	  		SetEntData(client, iAmmoTable+offset, 0, 4, true);
   		}*/
 	}
 	return Plugin_Handled;
@@ -1521,9 +1521,9 @@ public void SpecPlayer(int client, int args)
 		Menu menu = new Menu(SpecMenuHandler);
 
 		if (g_bSpectate[client])
-			menu.SetTitle("ckSurf - Spec menu (press 'm' to rejoin a team!)");
+			menu.SetTitle("Surf - Spec menu (press 'm' to rejoin a team!)");
 		else
-			menu.SetTitle("ckSurf - Spec menu");
+			menu.SetTitle("Surf - Spec menu");
 		int playerCount = 0;
 
 		//add replay bots
@@ -1686,7 +1686,7 @@ public void CompareMenu(int client, int args)
 	{
 		Format(szPlayerName, MAX_NAME_LENGTH, "");
 		Menu menu = new Menu(CompareSelectMenuHandler);
-		menu.SetTitle("ckSurf - Compare menu");
+		menu.SetTitle("Surf - Compare menu");
 		int playerCount = 0;
 		for (int i = 1; i <= MaxClients; i++)
 		{
@@ -1793,7 +1793,7 @@ public void ProfileMenu(int client, int args)
 	{
 		char szPlayerName[MAX_NAME_LENGTH];
 		Menu menu = new Menu(ProfileSelectMenuHandler);
-		menu.SetTitle("ckSurf - Profile menu");
+		menu.SetTitle("Surf - Profile menu");
 		GetClientName(client, szPlayerName, MAX_NAME_LENGTH);
 		menu.AddItem(szPlayerName, szPlayerName);
 		int playerCount = 1;
@@ -1884,7 +1884,7 @@ public int ProfileSelectMenuHandler(Menu menu, MenuAction action, int param1, in
 					Format(g_szProfileName[param1], MAX_NAME_LENGTH, "%s", szPlayerName);
 					char szSteamId[32];
 					GetClientAuthId(i, AuthId_Steam2, szSteamId, MAX_NAME_LENGTH, true);
-					//GetClientAuthString(i, szSteamId, 32);	
+					//GetClientAuthString(i, szSteamId, 32);
 					db_viewPlayerRank(param1, szSteamId);
 				}
 			}
@@ -1986,13 +1986,13 @@ public Action Client_Compare(int client, int args)
 public Action Client_RankingSystem(int client, int args)
 {
 	PrintToChat(client, "[%c%s%c]%c Loading html page.. (requires cl_disablehtmlmotd 0)", MOSSGREEN, g_szChatPrefix, WHITE, LIMEGREEN);
-	ShowMOTDPanel(client, "ckSurf - Ranking System", "http://koti.kapsi.fi/~mukavajoni/ranking/index.html", MOTDPANEL_TYPE_URL);
+	ShowMOTDPanel(client, "Imperfect Gamers - Ranking System", "http://www.imperfectgamers.org/ranking", MOTDPANEL_TYPE_URL);
 	return Plugin_Handled;
 }
 
 public Action Client_Pause(int client, int args)
 {
-	if (g_iClientInZone[client][0] == 9) 
+	if (g_iClientInZone[client][0] == 9)
 	{
 		PrintToChat(client, "[%c%s%c]%c You may not pause where you are currently.", MOSSGREEN, g_szChatPrefix, WHITE, RED);
 		return Plugin_Handled;
@@ -2192,7 +2192,7 @@ public Action Client_GoTo(int client, int args)
 				if (args == 0)
 				{
 					Menu menu = new Menu(GoToMenuHandler);
-					menu.SetTitle("ckSurf - Goto menu");
+					menu.SetTitle("Surf - Goto menu");
 					int playerCount = 0;
 					for (int i = 1; i <= MaxClients; i++)
 					{
@@ -2339,7 +2339,7 @@ public void ckTopMenu(int client)
 {
 	g_MenuLevel[client] = -1;
 	Menu menu = new Menu(TopMenuHandler);
-	menu.SetTitle("ckSurf - Top Menu");
+	menu.SetTitle("Surf - Top Menu");
 	if (g_hPointSystem.BoolValue)
 		menu.AddItem("Top 100 Players", "Top 100 Players");
 	menu.AddItem("Top 5 Challengers", "Top 5 Challengers");
@@ -2423,7 +2423,7 @@ public void HelpPanel(int client)
 {
 	PrintConsoleInfo(client);
 	Panel panel = new Panel();
-	panel.SetTitle("ckSurf Help (1/4)");
+	panel.SetTitle("Surf Help (1/4)");
 	panel.DrawText(" ");
 	panel.DrawText("!help - opens this menu");
 	panel.DrawText("!help2 - explanation of the ranking system");
@@ -2451,7 +2451,7 @@ public int HelpPanelHandler(Menu menu, MenuAction action, int param1, int param2
 public int HelpPanel2(int client)
 {
 	Panel panel = new Panel();
-	panel.SetTitle("ckSurf Help (2/4)");
+	panel.SetTitle("Surf Help (2/4)");
 	panel.DrawText(" ");
 	panel.DrawText("!start/!r - go back to start");
 	panel.DrawText("!stop - stops the timer");
@@ -2485,7 +2485,7 @@ public int HelpPanel2Handler(Menu menu, MenuAction action, int param1, int param
 public void HelpPanel3(int client)
 {
 	Panel panel = new Panel();
-	panel.SetTitle("ckSurf Help (3/4)");
+	panel.SetTitle("Surf Help (3/4)");
 	panel.DrawText(" ");
 	panel.DrawText("!maptop <mapname> - displays map top for a given map");
 	panel.DrawText("!flashlight - on/off flashlight");
@@ -2517,7 +2517,7 @@ public int HelpPanel3Handler(Menu menu, MenuAction action, int param1, int param
 public void HelpPanel4(int client)
 {
 	Panel panel = new Panel();
-	panel.SetTitle("ckSurf Help (4/4)");
+	panel.SetTitle("Surf Help (4/4)");
 	panel.DrawText(" ");
 	panel.DrawText("!cp - Creates a checkpoint to use in practice mode.");
 	panel.DrawText("!tele / !teleport / !practice / !prac - Starts practice mode");
@@ -2542,7 +2542,7 @@ public void ShowSrvSettings(int client)
 {
 	PrintToConsole(client, " ");
 	PrintToConsole(client, "-----------------");
-	PrintToConsole(client, "ckSurf settings");
+	PrintToConsole(client, "Surf settings");
 	PrintToConsole(client, "-----------------");
 	PrintToConsole(client, "ck_admin_clantag %b", g_hAdminClantag.BoolValue);
 	PrintToConsole(client, "ck_attack_spam_protection %b", g_hAttackSpamProtection.BoolValue);
@@ -2612,7 +2612,7 @@ public void ShowSrvSettings(int client)
 public void OptionMenu(int client)
 {
 	Menu menu = new Menu(OptionMenuHandler);
-	menu.SetTitle("ckSurf - Options Menu");
+	menu.SetTitle("Surf - Options Menu");
 	// #0
 	if (g_bHide[client])
 		menu.AddItem("Hide Players  -  Enabled", "Hide other players  -  Enabled");
@@ -2717,7 +2717,7 @@ public int OptionMenuHandler(Menu menu, MenuAction action, int param1, int param
 		g_OptionsMenuLastPage[param1] = param2;
 		OptionMenu(param1);
 	}
-} 
+}
 
 public void SwitchStartWeapon(int client)
 {
